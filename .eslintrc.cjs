@@ -28,12 +28,13 @@ module.exports = {
     // React
     {
       files: ["**/*.{js,jsx,ts,tsx}"],
-      plugins: ["react", "jsx-a11y"],
+      plugins: ["react", "jsx-a11y", "import"],
       extends: [
         "plugin:react/recommended",
         "plugin:react/jsx-runtime",
         "plugin:react-hooks/recommended",
         "plugin:jsx-a11y/recommended",
+        "plugin:import/recommended",
       ],
       settings: {
         react: {
@@ -47,6 +48,23 @@ module.exports = {
         "import/resolver": {
           typescript: {},
         },
+      },
+      rules: {
+        "import/order": [
+          "error",
+          {
+            "groups": [
+              ["builtin", "external"],
+              "internal",
+              ["parent", "sibling", "index"],
+            ],
+            "newlines-between": "always",
+            "alphabetize": {
+              order: "asc",
+              caseInsensitive: true,
+            },
+          },
+        ],
       },
     },
 
@@ -75,8 +93,23 @@ module.exports = {
         "@typescript-eslint/array-type": [
           "error",
           {
-            default: "generic", // Enforce Array<Foo> over Foo[]
-            readonly: "generic", // Enforce ReadonlyArray<Foo> over readonly Foo[]
+            default: "generic",
+            readonly: "generic",
+          },
+        ],
+        "import/order": [
+          "error",
+          {
+            "groups": [
+              ["builtin", "external"],
+              "internal",
+              ["parent", "sibling", "index"],
+            ],
+            "newlines-between": "always",
+            "alphabetize": {
+              order: "asc",
+              caseInsensitive: true,
+            },
           },
         ],
       },
