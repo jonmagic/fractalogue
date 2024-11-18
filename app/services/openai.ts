@@ -7,10 +7,6 @@ interface ChatMessage {
   content: string
 }
 
-interface ChatArgs {
-  messages: Array<ChatMessage>
-}
-
 interface OpenAIResponse {
   data: {
     choices: Array<{
@@ -24,16 +20,14 @@ interface ChatReturn {
   content: string
 }
 
-export async function chatWithOpenAI({
-  messages,
-}: ChatArgs): Promise<ChatReturn> {
-  const apiKey = import.meta.env.OPENAI_API_KEY
+export async function chat(messages: Array<ChatMessage>): Promise<ChatReturn> {
+  const apiKey = process.env.OPENAI_API_KEY
 
   try {
     const response: OpenAIResponse = await axios.post(
       `${apiBase}/chat/completions`,
       {
-        model: 'gpt-4o',
+        model: 'gpt-4',
         messages,
       },
       {
