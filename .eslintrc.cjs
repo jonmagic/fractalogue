@@ -71,6 +71,15 @@ module.exports = {
         "plugin:import/recommended",
         "plugin:import/typescript",
       ],
+      rules: {
+        "@typescript-eslint/array-type": [
+          "error",
+          {
+            default: "generic", // Enforce Array<Foo> over Foo[]
+            readonly: "generic", // Enforce ReadonlyArray<Foo> over readonly Foo[]
+          },
+        ],
+      },
     },
 
     // Node
