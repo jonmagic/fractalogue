@@ -34,7 +34,7 @@ const umzug = new Umzug({
   },
   context: db,
   storage: {
-    async executed(): Promise<string[]> {
+    async executed(): Promise<Array<string>> {
       const results = db.prepare('SELECT name FROM migrations ORDER BY timestamp').all();
       return results.map((row: { name: string }) => row.name);
     },
