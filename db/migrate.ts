@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url'
 // Dynamically resolve the `database.ts` file
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const databasePath = path.resolve(__dirname, '../app/services/database.ts')
+const databasePath = path.resolve(__dirname, '../app/lib/database.ts')
 
 const db = (await import(databasePath)).default
 
